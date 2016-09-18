@@ -1,0 +1,115 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.carolina.chktime.Redes_Sociales"
+    android:background="#00bcd4">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/logoblanco"
+            android:layout_margin="10dp"
+            android:id="@+id/logoblanco" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chkTime"
+            android:textSize="60dp"
+            android:id="@+id/chktime"
+            android:textColor="#7b1fa2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/logoblanco"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subtitulo"
+            android:textColor="#FFF"
+            android:textSize="30px"
+            android:layout_below="@+id/chktime"
+            android:layout_alignEnd="@+id/chktime"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:text="Elige las aplicaciones que quieres monitorear"
+            android:textSize="20dp"
+            android:layout_below="@+id/logoblanco"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/texto"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/fbblanco"
+            android:id="@+id/fb"
+            android:layout_below="@+id/texto"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/sc"
+            android:id="@+id/sc"
+            android:layout_below="@+id/fb"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/insta"
+            android:id="@+id/insta"
+            android:layout_below="@+id/sc"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/skype"
+            android:id="@+id/skype"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/fb"
+            android:layout_alignStart="@+id/textView" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/twblanco"
+            android:id="@+id/tw"
+            android:layout_above="@+id/insta"
+            android:layout_alignStart="@+id/skype" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/yb"
+            android:id="@+id/yb"
+            android:layout_alignTop="@+id/insta"
+            android:layout_alignStart="@+id/skype" />
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
