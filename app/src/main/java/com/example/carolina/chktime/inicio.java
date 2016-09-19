@@ -13,38 +13,36 @@ import android.widget.Button;
 
 
 public class inicio extends Fragment  {
-  //  CallInstructions CI;
-    //Button btnI;
 
-   // private FragmentOneCommunication mCallback;
+    Button btn_Inst;
 
-   /* @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_inicio, container, false);
-        btnI = (Button) view.findViewById(R.id.instrucciones_btn);
-        btnI.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onCreate(Bundle savedInstanceState) { //simplemente creo el fragmento inicio
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
+        // FIXME Se infla el fragmento en un objeto tipo view (rootView) luego saco las caracteristicas que necesito para finalmente retornarlo
+
+        btn_Inst = (Button) rootView.findViewById(R.id.instrucciones_btn);
+
+        btn_Inst.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                CI.CallInst();
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Instrucciones()).commit();
+                //llamo la actividad, el admin de soporte de frags,
             }
         });
 
-        return view;
+        return rootView;
     }
 
-    interface CallInstructions {
-        public void CallInst();
-    }
 
-   @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-       try {
-           CI = (CallInstructions) activity;
-       }
-       catch (ClassCastException e){
-           throw new ClassCastException("no da ");
-       }
-    } */
+
+
 
 }

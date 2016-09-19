@@ -10,14 +10,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.contenedor_fragmentos, new inicio()).commit(); //Paso 1
     }
 
- /*   @Override
-    public void CallInst(){
-        Instrucciones f2 = (Instrucciones) getFragmentManager().findFragmentById(R.id.f2);
-        f2.ShowInstruction();
-
-    }*/
 
 
 
