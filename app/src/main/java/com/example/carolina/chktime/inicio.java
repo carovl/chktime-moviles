@@ -12,39 +12,34 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class inicio extends Fragment  {
-  //  CallInstructions CI;
-    //Button btnI;
+public class Inicio extends Fragment  {
 
-   // private FragmentOneCommunication mCallback;
+            Button inst;
+            Button atras;
 
-   /* @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_inicio, container, false);
-        btnI = (Button) view.findViewById(R.id.instrucciones_btn);
-        btnI.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CI.CallInst();
-            }
-        });
-
-        return view;
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
     }
 
-    interface CallInstructions {
-        public void CallInst();
-    }
+           @Override
+           public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                 // TODO Auto-generated method stub
+                 View v = inflater.inflate(R.layout.fragment_inicio, container,false);
+               inst =(Button) v.findViewById(R.id.instrucciones_btn);
+               inst.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
+                       getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor,new Instrucciones()).commit();
 
-   @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-       try {
-           CI = (CallInstructions) activity;
-       }
-       catch (ClassCastException e){
-           throw new ClassCastException("no da ");
-       }
-    } */
+                   }
+               });
+
+
+               return v;
+
+
+
+           }
 
 }

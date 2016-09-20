@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/contenedorinstrucciones"
     tools:context="com.example.carolina.chktime.Instrucciones"
     android:background="#00bcd4">
 
@@ -64,6 +65,16 @@
             android:layout_marginBottom="15dp"
             android:id="@+id/instrucciones"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATRAS"
+            android:id="@+id/atras"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#00bcd4"
+            android:textColor="#ffffff" />
 
 
     </RelativeLayout>
