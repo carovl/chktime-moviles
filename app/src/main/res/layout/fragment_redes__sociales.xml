@@ -59,7 +59,8 @@
             android:id="@+id/fb"
             android:layout_below="@+id/texto"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="60dp"
+            android:clickable="true"/>
 
         <ImageView
             android:layout_width="80dp"
@@ -68,7 +69,8 @@
             android:id="@+id/sc"
             android:layout_below="@+id/fb"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="60dp"
+            android:clickable="true"/>
 
         <ImageView
             android:layout_width="80dp"
@@ -77,7 +79,8 @@
             android:id="@+id/insta"
             android:layout_below="@+id/sc"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="60dp"
+            android:clickable="true"/>
 
         <ImageView
             android:layout_width="80dp"
@@ -86,7 +89,8 @@
             android:id="@+id/skype"
             android:layout_marginLeft="10dp"
             android:layout_alignTop="@+id/fb"
-            android:layout_alignStart="@+id/textView" />
+            android:layout_alignStart="@+id/textView"
+            android:clickable="true" />
 
         <ImageView
             android:layout_width="80dp"
@@ -94,7 +98,8 @@
             android:src="@mipmap/twblanco"
             android:id="@+id/tw"
             android:layout_above="@+id/insta"
-            android:layout_alignStart="@+id/skype" />
+            android:layout_alignStart="@+id/skype"
+            android:clickable="true" />
 
         <ImageView
             android:layout_width="80dp"
@@ -102,12 +107,76 @@
             android:src="@mipmap/yb"
             android:id="@+id/yb"
             android:layout_alignTop="@+id/insta"
-            android:layout_alignStart="@+id/skype" />
+            android:layout_alignStart="@+id/skype"
+            android:clickable="true" />
 
+        <!-- Botones -->
 
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ATRAS"
+        android:id="@+id/atras"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#00bcd4"
+        android:textColor="#ffffff" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finalizar"
+            android:id="@+id/fin_seleccion"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="#00bcd4"
+            android:textColor="#ffffff" />
 
+        <!-- CheckBox -->
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox_FB"
+            android:layout_alignBottom="@+id/fb"
+            android:layout_alignStart="@+id/chktime"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox_SK"
+            android:layout_above="@+id/sc"
+            android:layout_alignEnd="@+id/skype" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox"
+            android:layout_alignBottom="@+id/sc"
+            android:layout_alignStart="@+id/checkBox_FB" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox2"
+            android:layout_above="@+id/insta"
+            android:layout_alignStart="@+id/checkBox_SK" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox3"
+            android:layout_alignBottom="@+id/insta"
+            android:layout_alignStart="@+id/checkBox" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox4"
+            android:layout_alignBottom="@+id/yb"
+            android:layout_alignStart="@+id/checkBox2" />
 
     </RelativeLayout>
 

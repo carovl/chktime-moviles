@@ -106,6 +106,17 @@
             android:layout_below="@+id/modo_choque"
             android:layout_marginTop="25dp"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATRAS"
+            android:id="@+id/atras"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#7b1fa2"
+            android:textColor="#ffffff" />
+
 
 
     </RelativeLayout>
