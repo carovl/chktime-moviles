@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 
 public class Redes_Sociales extends Fragment {
@@ -21,10 +21,7 @@ public class Redes_Sociales extends Fragment {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private CheckBox cbFB,cbSK, cbYB, cbTW, cbSC, cbIG;
-    private static final String PREF_FB_ESTADO = "pref_fb estado";
-    ImageView Im_Fb;
-    TextView App_Fb;
-
+    private List<Aplicacion> aplicaciones;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +42,7 @@ public class Redes_Sociales extends Fragment {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Menu()).commit();
+               getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Inicio()).commit();
             }
         });
 
@@ -53,12 +50,12 @@ public class Redes_Sociales extends Fragment {
         btn_Con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_diagnostico()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Menu()).commit();
             }
         });
 
        //******************************************************************************************
-        //CheckBoxes
+        //Implementacion y guardado de estado de los CheckBoxes
         //Facebook
         cbFB = (CheckBox) rootView.findViewById(R.id.checkBox_FB);
         cbFB.setChecked(sp.getBoolean("Facebook",false)); //cargar aplicaciones
@@ -70,9 +67,9 @@ public class Redes_Sociales extends Fragment {
         });
 
         //Instagram
-        cbTW = (CheckBox) rootView.findViewById(R.id.checkBox_IG);
-        cbTW.setChecked(sp.getBoolean("Instagram",false)); //cargar aplicaciones
-        cbTW.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbIG = (CheckBox) rootView.findViewById(R.id.checkBox_IG);
+        cbIG.setChecked(sp.getBoolean("Instagram",false)); //cargar aplicaciones
+        cbIG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 editor.putBoolean("Instagram", isChecked).commit();
@@ -80,9 +77,9 @@ public class Redes_Sociales extends Fragment {
         });
 
         //Snapchat
-        cbTW = (CheckBox) rootView.findViewById(R.id.checkBox_SC);
-        cbTW.setChecked(sp.getBoolean("Snapchat",false)); //cargar aplicaciones
-        cbTW.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbSC = (CheckBox) rootView.findViewById(R.id.checkBox_SC);
+        cbSC.setChecked(sp.getBoolean("Snapchat",false)); //cargar aplicaciones
+        cbSC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 editor.putBoolean("Snapchat", isChecked).commit();
@@ -110,23 +107,22 @@ public class Redes_Sociales extends Fragment {
         });
 
         //Youtube
-        cbTW = (CheckBox) rootView.findViewById(R.id.checkBox_YB);
-        cbTW.setChecked(sp.getBoolean("Youtube",false)); //cargar aplicaciones
-        cbTW.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbYB = (CheckBox) rootView.findViewById(R.id.checkBox_YB);
+        cbYB.setChecked(sp.getBoolean("Youtube",false)); //cargar aplicaciones
+        cbYB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 editor.putBoolean("Youtube", isChecked).commit();
             }
         });
 
-
+       //******************************************************************************************
+    /*    boolean cheked = ((CheckBox) rootView).isChecked();
+        Aplicacion aplicacion = new Aplicacion();*/
 
 
         return rootView;
     }
-
-
-
 
 
 }

@@ -7,13 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-
-import java.util.List;
 
 
-public class Modo_diagnostico extends Fragment {
-
+public class Modo_intervencion extends Fragment {
     Button btn_back;
 
     @Override
@@ -25,7 +21,7 @@ public class Modo_diagnostico extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_modo_diagnostico, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_modo_intervencion, container, false);
 
         //******************************************************************************************
         //Boton de atras
@@ -48,4 +44,5 @@ public class Modo_diagnostico extends Fragment {
 
         return rootView;
     }
+
 }

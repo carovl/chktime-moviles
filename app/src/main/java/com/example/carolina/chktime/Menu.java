@@ -13,7 +13,7 @@ import com.example.carolina.chktime.R;
 
 public class Menu extends Fragment {
 
-    Button btn_back, btn_ayuda, btn_diagnostico;
+    Button btn_back, btn_ayuda, btn_diagnostico, btn_intervencion;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,23 @@ public class Menu extends Fragment {
             }
         });
 
+        //******************************************************************************************
+        //Modos
+
         btn_diagnostico = (Button) rootView.findViewById(R.id.modo_diagnostico);
         btn_diagnostico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Redes_Sociales()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_diagnostico()).commit();
+
+            }
+        });
+
+        btn_intervencion = (Button) rootView.findViewById(R.id.modo_intervencion);
+        btn_intervencion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_intervencion()).commit();
 
             }
         });
