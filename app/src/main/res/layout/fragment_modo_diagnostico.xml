@@ -40,16 +40,27 @@
             android:layout_alignEnd="@+id/chktime" />
 
         <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Modo Diagnostico"
+        android:textSize="20dp"
+        android:layout_below="@+id/logoblanco"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/texto"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFF"
-            android:text="Modo Diagnostico"
             android:textSize="20dp"
-            android:layout_below="@+id/logoblanco"
+            android:layout_below="@+id/texto"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:id="@+id/texto"/>
+            android:id="@+id/App1"/>
 
         <Button
             android:layout_width="wrap_content"

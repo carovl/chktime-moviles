@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedor_fragmentos, new Inicio()).commit(); //Paso 1
+
     }
 
 
