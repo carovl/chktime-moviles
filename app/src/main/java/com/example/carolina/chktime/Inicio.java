@@ -14,7 +14,7 @@ public class Inicio extends Fragment {
     Button btn_Inst, btn_Menu, btn_Acerca, b;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) { //simplemente creo el fragmento inicio
+    public void onCreate(Bundle savedInstanceState) { //simplemente creo el fragmento Inicio
         super.onCreate(savedInstanceState);
     }
 

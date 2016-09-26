@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.carolina.chktime.inicio"
+    tools:context=".Inicio"
     android:background="#7b1fa2">
 
 <LinearLayout
