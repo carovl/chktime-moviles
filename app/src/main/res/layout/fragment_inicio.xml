@@ -2,20 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/finicio"
     tools:context=".Inicio"
-    android:background="#7b1fa2">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:background="#7b1fa2"
     android:orientation="vertical">
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textColor="#00bcd4"
-        android:textSize="50dp"
+        android:textSize="80dp"
         android:layout_gravity="center"
         android:id="@+id/chktime"
         android:layout_marginTop="15dp"/>
@@ -31,11 +28,10 @@
         android:layout_marginRight="40dp"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:src="@mipmap/logoblanco"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginTop="10dp"/>
 
     <!-- Botones
     -->
@@ -74,10 +70,8 @@
         android:textStyle="bold"
         android:textColor="#FFF"
         android:clickable="true"
-        android:layout_marginTop="15dp"/>
-
-
-</LinearLayout>
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"/>
 
 
 </LinearLayout>

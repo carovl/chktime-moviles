@@ -1,15 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/contenedorinstrucciones"
     tools:context="com.example.carolina.chktime.Instrucciones"
-    android:background="#00bcd4">
+    android:background="#00bcd4"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <!-- Encabezado-->
+    <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="90dp"
@@ -18,28 +20,42 @@
             android:layout_margin="10dp"
             android:id="@+id/logoblanco" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="chkTime"
-            android:textSize="60dp"
-            android:id="@+id/chktime"
-            android:textColor="#7b1fa2"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/logoblanco"
-            android:layout_marginTop="10dp"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/subtitulo"
-            android:textColor="#FFF"
-            android:textSize="30px"
-            android:layout_below="@+id/chktime"
-            android:layout_alignEnd="@+id/chktime"
-            android:id="@+id/textView" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="chkTime"
+                android:textSize="60dp"
+                android:id="@+id/chktime"
+                android:textColor="#7b1fa2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@+id/logoblanco"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitulo"
+                android:textColor="#FFF"
+                android:textSize="30px"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="end"
+                android:id="@+id/textView" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- CONTENIDO-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFF"
-            android:text="Texto para las nstrucciones"
+            android:text="Texto para las instrucciones"
             android:textSize="20dp"
             android:layout_below="@+id/texto"
             android:layout_marginLeft="20dp"
@@ -65,18 +81,28 @@
             android:layout_marginBottom="15dp"
             android:id="@+id/instrucciones"/>
 
+
+
+    </LinearLayout>
+
+    <!-- BOTON ATRAS-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ATRAS"
             android:id="@+id/atras"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:background="#00bcd4"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:layout_gravity="bottom"/>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
+
+

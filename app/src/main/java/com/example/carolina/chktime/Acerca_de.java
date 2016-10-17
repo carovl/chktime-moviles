@@ -3,13 +3,13 @@ package com.example.carolina.chktime;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class Instrucciones extends Fragment {
+
+public class Acerca_de extends Fragment {
     Button btn_back;
 
     @Override
@@ -21,7 +21,7 @@ public class Instrucciones extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_instrucciones, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_acerca_de, container, false);
 
         btn_back = (Button) rootView.findViewById(R.id.atras);
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +31,7 @@ public class Instrucciones extends Fragment {
 
             }
         });
+
         return rootView;
     }
 

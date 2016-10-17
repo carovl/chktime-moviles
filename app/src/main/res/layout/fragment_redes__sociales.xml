@@ -1,14 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.carolina.chktime.Redes_Sociales"
-    android:background="#00bcd4">
+    android:background="#00bcd4"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <!-- Encabezado-->
+    <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="90dp"
@@ -17,99 +20,235 @@
             android:layout_margin="10dp"
             android:id="@+id/logoblanco" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="chkTime"
-            android:textSize="60dp"
-            android:id="@+id/chktime"
-            android:textColor="#7b1fa2"
-            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="chkTime"
+                android:textSize="60dp"
+                android:id="@+id/chktime"
+                android:textColor="#7b1fa2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@+id/logoblanco"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitulo"
+                android:textColor="#FFF"
+                android:textSize="30px"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="end"
+                android:id="@+id/textView" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- CONTENIDO-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Elige las aplicaciones que quieres monitorear"
+        android:textSize="20dp"
+        android:layout_below="@+id/logoblanco"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/texto"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- IMAGENES Y CHECKBOXES -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/fbblanco"
+                    android:id="@+id/fb"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkBox_FB"
+                    android:layout_gravity="bottom"
+                    android:gravity="end"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/insta"
+                    android:id="@+id/insta"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/checkBox_IG"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/sc"
+                    android:id="@+id/sc"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/checkBox_SC"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/skype"
+                    android:id="@+id/skype"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/checkBox_SK"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/twblanco"
+                    android:id="@+id/tw"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/checkBox_TW"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/yb"
+                    android:id="@+id/yb"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/checkBox_YB"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:src="@mipmap/wp"
+                    android:id="@+id/wp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/checkBox_WP"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+    <!-- BOTON ATRAS-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATRAS"
+            android:id="@+id/atras"
+            android:background="#00bcd4"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continuar"
+            android:id="@+id/continuar"
+            android:background="#00bcd4"
+            android:textColor="#ffffff"
             android:layout_marginRight="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/logoblanco"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/subtitulo"
-            android:textColor="#FFF"
-            android:textSize="30px"
-            android:layout_below="@+id/chktime"
-            android:layout_alignEnd="@+id/chktime"
-            android:id="@+id/textView" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:text="Elige las aplicaciones que quieres monitorear"
-            android:textSize="20dp"
-            android:layout_below="@+id/logoblanco"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:id="@+id/texto"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/fbblanco"
-            android:id="@+id/fb"
-            android:layout_below="@+id/texto"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/sc"
-            android:id="@+id/sc"
-            android:layout_below="@+id/fb"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/insta"
-            android:id="@+id/insta"
-            android:layout_below="@+id/sc"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"/>
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/skype"
-            android:id="@+id/skype"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@+id/fb"
-            android:layout_alignStart="@+id/textView" />
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/twblanco"
-            android:id="@+id/tw"
-            android:layout_above="@+id/insta"
-            android:layout_alignStart="@+id/skype" />
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/yb"
-            android:id="@+id/yb"
-            android:layout_alignTop="@+id/insta"
-            android:layout_alignStart="@+id/skype" />
+            android:gravity="end"/>
 
 
+    </LinearLayout>
 
-
-
-
-    </RelativeLayout>
-
-
-</FrameLayout>
+</LinearLayout>
