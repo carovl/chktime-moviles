@@ -1,6 +1,8 @@
 package com.example.carolina.chktime;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,16 +10,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.carolina.chktime.R;
-
 
 public class Menu extends Fragment {
 
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
+
     Button btn_back, btn_ayuda, btn_diagnostico, btn_intervencion;
+
+    public Menu(){
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sp = getActivity().getSharedPreferences("Opciones_Guardadas", Context.MODE_PRIVATE); // para tener una pref para toda la app
+        editor=sp.edit();
     }
 
     @Override
@@ -26,11 +35,14 @@ public class Menu extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
+
+
+
         btn_back = (Button) rootView.findViewById(R.id.atras);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Inicio()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Redes_Sociales()).commit();
 
             }
         });
@@ -39,7 +51,8 @@ public class Menu extends Fragment {
         btn_ayuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Ayuda()).commit();
+                editor.putInt("intVariableName",3).commit();//El entero 3 nos lleva a las opciones de ayuda
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Textshow()).commit();
 
             }
         });
