@@ -256,50 +256,8 @@ public class Redes_Sociales extends Fragment {
     }
 
     //******************************************************************************************
-    //http://www.dreamincode.net/forums/topic/138412-android-20-list-of-running-applications/
-   /* private boolean appRunning(String uri) {
-        System.out.println("appRunning");
-        boolean app_Running = false;
-        *//*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            UsageStatsManager mUsageStatsManager = (UsageStatsManager)getActivity().getSystemService("usagestats");
-            long time = System.currentTimeMillis();
-            // We get usage stats for the last 10 seconds
-            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000*10, time);
-            // Sort the stats by the last time used
-            if(stats != null) {
-                SortedMap<Long,UsageStats> mySortedMap = new TreeMap<Long,UsageStats>();
-                for (UsageStats usageStats : stats) {
-                    mySortedMap.put(usageStats.getLastTimeUsed(),usageStats);
-                }
-                if(!mySortedMap.isEmpty()) {
-                    topPackageName =  mySortedMap.get(mySortedMap.lastKey()).getPackageName();
-                }
-            }
-        }else { *//*
-
-            ActivityManager actvityManager = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
-
-            List<ActivityManager.RunningAppProcessInfo> procInfos = actvityManager.getRunningAppProcesses();
-
-//con eso se sabe la app que esta en primer plano
-
-
-        for (int i = 0; i < procInfos.size(); i++) {
-                System.out.println(procInfos.get(i).processName);
-                if (procInfos.get(i).processName.equals(uri)) {
-                        System.out.println("true " + procInfos.get(i).processName);
-                    app_Running = true;
-                }
-            }
-
-            return app_Running;
-       // }
-        //http://www.programcreek.com/java-api-examples/index.php?api=android.app.ActivityManager.RunningTaskInfo
-        //https://developer.android.com/reference/android/app/ActivityManager.html#getRecentTasks%28int,%20int%29
-
-    }
-*/
-    //esto funcionó en android 4.4 API 19 en la 21 no funciona
+    // esto funcionó en android 4.4 API 19 en la 21 no funciona
+    //http://stackoverflow.com/questions/29330794/how-to-check-whether-a-particular-app-is-running-or-not-in-android
     boolean isNamedProcessRunning(String processName){
         if (processName == null)
             return false;

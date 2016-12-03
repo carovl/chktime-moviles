@@ -130,16 +130,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2">
+                android:layout_weight="2"
+                android:layout_gravity="end">
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="ATRAS"
                     android:id="@+id/atras"
                     android:background="#7b1fa2"
                     android:textColor="#ffffff"
-                    android:layout_gravity="bottom"/>
+                    android:layout_gravity="end"/>
 
 
             </LinearLayout>

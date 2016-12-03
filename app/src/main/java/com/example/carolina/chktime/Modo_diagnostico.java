@@ -1,7 +1,10 @@
 package com.example.carolina.chktime;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import static com.example.carolina.chktime.R.id.s1;
 
@@ -67,6 +71,8 @@ public class Modo_diagnostico extends Fragment {
         if (cbFB==true){
             imgFB = (ImageView) rootView.findViewById(R.id.img1);
             ed1 = (EditText) rootView.findViewById(R.id.ed1);
+            int i = Integer.parseInt(ed1.getText().toString());
+            startAlert(rootView, 5);
             s1 = (Button) rootView.findViewById(R.id.s1);
             if(RunFB == true){
                 s1.setText("RUN");
@@ -188,6 +194,19 @@ public class Modo_diagnostico extends Fragment {
         });
 
         return rootView;
+    }
+
+
+    public void startAlert (View view, int i){
+        System.out.println("START ALERT");
+        Intent intent = new Intent(getContext(), MyBroadcastReceiver.class);
+        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 1, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+(i*1000), pendingIntent);
+
+        Toast.makeText(getActivity(), "Alarm set in" + i +"seconds", Toast.LENGTH_SHORT).show();
     }
 
 

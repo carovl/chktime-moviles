@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.carolina.chktime">
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission> <!--Vibrar-->
 
     <application
         android:allowBackup="true"
@@ -16,8 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Diagnostico"
+            android:label="Diagnostico"></activity>
 
         <service android:name=".Intervencion" />
+
+        <receiver android:name=".MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.example.carolina.chktime.broadcat_reciever.custom"></action>
+            </intent-filter>
+        </receiver>
+
+
+
     </application>
 
 </manifest>

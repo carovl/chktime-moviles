@@ -71,12 +71,12 @@ public class Textshow extends Fragment {
                 break;
             case 2:
                 titulo.setText("ACERCA DE");
-                descripcion.setText("Es un proyecto universitario para programacion de dispositivos moviles, la materia");
+                descripcion.setText("Es un proyecto universitario para la materia programacion de dispositivos moviles");
                 editor.putInt("intVariableName",0).commit();
                 break;
             case 3:
                 titulo.setText("AYUDA");
-                descripcion.setText("Simplemente escoge tu red social y program el tiempo");
+                descripcion.setText("Simplemente escoge tu red social y programa el tiempo");
                 editor.putInt("intVariableName",0).commit();
                 break;
             default:
