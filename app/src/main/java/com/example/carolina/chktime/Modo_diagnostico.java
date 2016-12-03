@@ -22,7 +22,7 @@ public class Modo_diagnostico extends Fragment {
     Button btn_back,s1,s2,s3,s4,s5,s6,s7;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
-    boolean cbFB, cbIG, cbSC, cbSK, cbTW, cbYB,cbWP;
+    boolean cbFB, cbIG, cbSC, cbSK, cbTW, cbYB,cbWP, RunFB, RunIG, RunSC, RunSK, RunTW, RunYB,RunWP;
     EditText ed1,ed2,ed3,ed4,ed5,ed6,ed7;
     LinearLayout l1,l2,l3,l4,l5,l6,l7;
 
@@ -50,6 +50,17 @@ public class Modo_diagnostico extends Fragment {
         cbYB= sp.getBoolean("Youtube",false);
         cbWP= sp.getBoolean("Whatsapp",false);
 
+        RunFB= sp.getBoolean("Facebook_RUN",false);
+        System.out.println("FB="+RunFB);
+        RunIG= sp.getBoolean("Instagram_RUN",false);
+        System.out.println("IG="+RunIG);
+        RunSC= sp.getBoolean("Snapchat_RUN",false);
+        RunSK= sp.getBoolean("Skype_RUN",false);
+        RunTW= sp.getBoolean("Twitter_RUN",false);
+        RunYB= sp.getBoolean("Youtube_RUN",false);
+        RunWP= sp.getBoolean("Whatsapp_RUN",false);
+        System.out.println("WP="+RunWP);
+
         int width = 80;
         int heigt = 80;
 
@@ -57,6 +68,9 @@ public class Modo_diagnostico extends Fragment {
             imgFB = (ImageView) rootView.findViewById(R.id.img1);
             ed1 = (EditText) rootView.findViewById(R.id.ed1);
             s1 = (Button) rootView.findViewById(R.id.s1);
+            if(RunFB == true){
+                s1.setText("RUN");
+            }
             l1= (LinearLayout) rootView.findViewById(R.id.l1);
             l1.setVisibility(View.VISIBLE);
             imgFB.setMinimumWidth(width);
@@ -70,6 +84,9 @@ public class Modo_diagnostico extends Fragment {
             imgIG = (ImageView) rootView.findViewById(R.id.img2);
             ed2 = (EditText) rootView.findViewById(R.id.ed2);
             s2 = (Button) rootView.findViewById(R.id.s2);
+            if(RunIG == true){
+                s2.setText("RUN");
+            }
             l2= (LinearLayout) rootView.findViewById(R.id.l2);
             l2.setVisibility(View.VISIBLE);
 
@@ -84,6 +101,9 @@ public class Modo_diagnostico extends Fragment {
             imgSC = (ImageView) rootView.findViewById(R.id.img3);
             ed3 = (EditText) rootView.findViewById(R.id.ed3);
             s3= (Button) rootView.findViewById(R.id.s3);
+            if(RunSC == true){
+                s3.setText("RUN");
+            }
             l3= (LinearLayout) rootView.findViewById(R.id.l3);
             l3.setVisibility(View.VISIBLE);
             imgSC.setMinimumWidth(width);
@@ -97,6 +117,9 @@ public class Modo_diagnostico extends Fragment {
             imgSK = (ImageView) rootView.findViewById(R.id.img4);
             ed4 = (EditText) rootView.findViewById(R.id.ed4);
             s4 = (Button) rootView.findViewById(R.id.s4);
+            if(RunSK == true){
+                s4.setText("RUN");
+            }
             l4= (LinearLayout) rootView.findViewById(R.id.l4);
             l4.setVisibility(View.VISIBLE);
             imgSK.setMinimumWidth(width);
@@ -110,6 +133,9 @@ public class Modo_diagnostico extends Fragment {
             imgTW = (ImageView) rootView.findViewById(R.id.img5);
             ed5 = (EditText) rootView.findViewById(R.id.ed5);
             s5 = (Button) rootView.findViewById(R.id.s5);
+            if(RunTW == true){
+                s5.setText("RUN");
+            }
             l5= (LinearLayout) rootView.findViewById(R.id.l5);
             l5.setVisibility(View.VISIBLE);
             imgTW.setMinimumWidth(width);
@@ -123,6 +149,9 @@ public class Modo_diagnostico extends Fragment {
             imgYB = (ImageView) rootView.findViewById(R.id.img6);
             ed6 = (EditText) rootView.findViewById(R.id.ed6);
             s6 = (Button) rootView.findViewById(R.id.s6);
+            if(RunYB == true){
+                s6.setText("RUN");
+            }
             l6= (LinearLayout) rootView.findViewById(R.id.l6);
             l6.setVisibility(View.VISIBLE);
             imgYB.setMinimumWidth(width);
@@ -136,6 +165,9 @@ public class Modo_diagnostico extends Fragment {
             imgWP = (ImageView) rootView.findViewById(R.id.img7);
             ed7 = (EditText) rootView.findViewById(R.id.ed7);
             s7 = (Button) rootView.findViewById(R.id.s7);
+            if(RunWP == true){
+                s7.setText("RUN");
+            }
             l7= (LinearLayout) rootView.findViewById(R.id.l7);
             l7.setVisibility(View.VISIBLE);
             imgWP.setMinimumWidth(width);

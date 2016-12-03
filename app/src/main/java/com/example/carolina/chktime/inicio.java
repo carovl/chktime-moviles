@@ -2,9 +2,11 @@ package com.example.carolina.chktime;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,7 @@ public class Inicio extends Fragment {
 
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
-
+    Intent intent;
     Button btn_Inst, btn_Menu, btn_Acerca;
 
     public Inicio(){
@@ -29,7 +31,7 @@ public class Inicio extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
 
@@ -41,6 +43,7 @@ public class Inicio extends Fragment {
         btn_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Redes_Sociales()).commit();
             }
         });
