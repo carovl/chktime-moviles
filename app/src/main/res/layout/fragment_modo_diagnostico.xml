@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.carolina.chktime.Modo_diagnostico"
     android:background="#7b1fa2"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/contenedor_diagnostico">
 
     <!-- Encabezado-->
     <LinearLayout
@@ -363,6 +364,16 @@
             android:id="@+id/atras"
             android:background="#7b1fa2"
             android:textColor="#ffffff"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LISTO"
+            android:id="@+id/listo"
+            android:background="#7b1fa2"
+            android:textColor="#ffffff"
+            android:gravity="end|center_vertical"
+            android:paddingRight="40dp"/>
 
     </LinearLayout>
 

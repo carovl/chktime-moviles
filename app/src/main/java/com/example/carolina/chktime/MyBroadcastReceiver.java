@@ -13,9 +13,17 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive (Context context, Intent intent){
-        System.out.println("br ALERT");
-        Toast.makeText(context,"Your time is up", Toast.LENGTH_SHORT).show();
-        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(2000);
+        //System.out.println("br ALERT");
+        String status=intent.getStringExtra("alarma");
+        if(status.equals("on")) {
+            Toast.makeText(context, "Your time is up", Toast.LENGTH_SHORT).show();
+            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(2000);
+        }
+        if(status.equals("off")) {
+            Toast.makeText(context, "No lo lograste intenta de nuevo :(", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 }

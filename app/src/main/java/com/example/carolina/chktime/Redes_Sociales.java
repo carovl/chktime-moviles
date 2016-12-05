@@ -68,7 +68,7 @@ public class Redes_Sociales extends Fragment {
         //Verifico si las apps estan instaldas en el equipo
 
 
-        boolean facebbokliteInstalled = this.appInstalled("com.facebook.lite");
+             boolean facebbokliteInstalled = this.appInstalled("com.facebook.lite");
         boolean facebbokInstalled = this.appInstalled("com.facebook.katana");
         boolean instagramInstalled = this.appInstalled("com.instagram.android");
         boolean snapchatInstalled = this.appInstalled("com.snapchat.android");

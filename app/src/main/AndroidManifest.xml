@@ -28,7 +28,7 @@
             </intent-filter>
         </receiver>
 
-
+        <service android:name=".BackgroundService"/>
 
     </application>
 

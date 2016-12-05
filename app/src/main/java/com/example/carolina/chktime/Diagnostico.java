@@ -2,13 +2,14 @@ package com.example.carolina.chktime;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
-import android.view.View;
+import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,21 +20,20 @@ import android.widget.Toast;
 public class Diagnostico extends AppCompatActivity {
 
     ImageView imgFB, imgIG, imgSC, imgSK, imgTW,imgYB,imgWP ;
-    Button btn_back,s1,s2,s3,s4,s5,s6,s7;
+    Button btn_back,s1,s2,s3,s4,s5,s6,s7, btn_listo;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     boolean cbFB, cbIG, cbSC, cbSK, cbTW, cbYB,cbWP, RunFB, RunIG, RunSC, RunSK, RunTW, RunYB,RunWP;
     EditText ed1,ed2,ed3,ed4,ed5,ed6,ed7;
     LinearLayout l1,l2,l3,l4,l5,l6,l7;
+    Intent intent;
 
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_modo_diagnostico);
 
         sp = getSharedPreferences("Opciones_Guardadas", Context.MODE_PRIVATE); // para tener una pref para toda la app
         editor = sp.edit();
-
 
         //******************************************************************************************
         //Identificacion de las apps seleccionadas
@@ -46,15 +46,15 @@ public class Diagnostico extends AppCompatActivity {
         cbWP = sp.getBoolean("Whatsapp", false);
 
         RunFB = sp.getBoolean("Facebook_RUN", false);
-        System.out.println("FB=" + RunFB);
+       // System.out.println("FB=" + RunFB);
         RunIG = sp.getBoolean("Instagram_RUN", false);
-        System.out.println("IG=" + RunIG);
+       // System.out.println("IG=" + RunIG);
         RunSC = sp.getBoolean("Snapchat_RUN", false);
         RunSK = sp.getBoolean("Skype_RUN", false);
         RunTW = sp.getBoolean("Twitter_RUN", false);
         RunYB = sp.getBoolean("Youtube_RUN", false);
         RunWP = sp.getBoolean("Whatsapp_RUN", false);
-        System.out.println("WP=" + RunWP);
+       // System.out.println("WP=" + RunWP);
 
         int width = 80;
         int heigt = 80;
@@ -74,16 +74,32 @@ public class Diagnostico extends AppCompatActivity {
             imgFB.setMinimumHeight(heigt);
             imgFB.setMaxHeight(heigt);
             imgFB.setImageResource(R.mipmap.fbblanco);
-           // System.out.println(ed1.getText().toString());
+            // System.out.println(ed1.getText().toString());
             ed1.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed1.getText().toString() != "") {
-                        String string_temp = ed1.getText().toString();
-                        startAlert(string_temp, "Facebook");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed1.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed1.getText().toString();
+                                    startAlert(string_temp, "Facebook",1);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
+                }
+            });
+            s1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Facebook",1);
                 }
             });
         }
@@ -106,12 +122,28 @@ public class Diagnostico extends AppCompatActivity {
             ed2.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed2.getText().toString() != "") {
-                        String string_temp = ed1.getText().toString();
-                        startAlert(string_temp, "Instagram");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed2.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed2.getText().toString();
+                                    startAlert(string_temp, "Instagram",2);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
+                }
+            });
+            s2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Instagram",2);
                 }
             });
         }
@@ -133,12 +165,27 @@ public class Diagnostico extends AppCompatActivity {
             ed3.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed3.getText().toString() != "") {
-                        String string_temp = ed1.getText().toString();
-                        startAlert(string_temp, "Snapchat");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed3.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed3.getText().toString();
+                                    startAlert(string_temp, "Snapchat",3);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
+                }
+            });
+            s3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Snapchat",3);
                 }
             });
         }
@@ -160,12 +207,27 @@ public class Diagnostico extends AppCompatActivity {
             ed4.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed4.getText().toString() != "") {
-                        String string_temp = ed1.getText().toString();
-                        startAlert(string_temp, "Skype");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed4.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed4.getText().toString();
+                                    startAlert(string_temp, "Skype",4);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
+                }
+            });
+            s4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Skype",4);
                 }
             });
         }
@@ -187,12 +249,27 @@ public class Diagnostico extends AppCompatActivity {
             ed5.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed1.getText().toString() != "") {
-                        String string_temp = ed5.getText().toString();
-                        startAlert(string_temp, "Twitter");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed5.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed5.getText().toString();
+                                    startAlert(string_temp, "Twitter",5);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
+                }
+            });
+            s5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Twitter",5);
                 }
             });
         }
@@ -214,12 +291,27 @@ public class Diagnostico extends AppCompatActivity {
             ed6.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed1.getText().toString() != "") {
-                        String string_temp = ed6.getText().toString();
-                        startAlert(string_temp, "Youtube");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed6.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed6.getText().toString();
+                                    startAlert(string_temp, "Youtube",6);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
+                }
+            });
+            s6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Youtube",6);
                 }
             });
         }
@@ -241,44 +333,145 @@ public class Diagnostico extends AppCompatActivity {
             ed7.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (ed1.getText().toString() != "") {
-                        String string_temp = ed7.getText().toString();
-                        startAlert(string_temp, "Whatsapp");
-                        return true;
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_DPAD_CENTER:
+                            case KeyEvent.KEYCODE_ENTER:
+                                if (ed7.getText().toString().isEmpty()) {
+                                } else {
+                                    String string_temp = ed7.getText().toString();
+                                    startAlert(string_temp, "Whatsapp",7);
+                                }
+                                return true;
+                            default:
+                                break;
+                        }
                     }
                     return false;
                 }
             });
+            s7.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopAlert("Whatsapp",7);
+                }
+            });
+
+          /*  intent = new Intent(Diagnostico.this, BackgroundService.class);
+            intent.setAction("app.caro.runningapps.BackgroundService.startWP");
+            startService(intent);*/
         }
 
 
         //******************************************************************************************
         //Boton de atras
-        btn_back = (Button) findViewById(R.id.atras);
+       /* btn_back = (Button) findViewById(R.id.atras);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Menu()).commit();
+                Intent intent = new Intent(getApplicationContext(), Diagnostico.class);
+                startActivity(intent);
+                finish();
+                //finish();
+                //onStop();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Menu()).commit();
+            }
+        });*/
+
+        btn_listo = (Button) findViewById(R.id.listo);
+        btn_listo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Diagnostico.class);
+                startActivity(intent);
+                finish();
             }
         });
-}
-
-
-    public void startAlert (String s, String app){
+    }
+    //*************************************************************************************************
+    public void startAlert (String s, String app, int id){
         int i=5; //valor por defecto
         i= Integer.valueOf(s); //de aca se sacaria el valor para la alarma
         System.out.println("START ALERT");
         Intent intent = new Intent(this, MyBroadcastReceiver.class);
-        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom");
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, 0);
+        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma","on");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), id, intent, 0);
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmManager =  (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+(i*1000), pendingIntent);
 
-        Toast.makeText(this, "Alarm set in " + i +" seconds for" + app, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Alarm set in " + i +" seconds for " + app, Toast.LENGTH_SHORT).show();
     }
 
+    //*************************************************************************************************
+    public void stopAlert ( String app, int id){
+
+        System.out.println("STOP ALERT");
+        Intent intent = new Intent(this, MyBroadcastReceiver.class);
+        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma","off");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), id, intent, 0);
+
+        AlarmManager alarmManager =  (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
 
 
+        Toast.makeText(this, "Has fallado en " + app, Toast.LENGTH_SHORT).show();
+    }
 
+    //**********************************************************************************************
+
+    private BroadcastReceiver ReceivefromService = new BroadcastReceiver(){
+
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            String status=intent.getStringExtra("newstatus");
+            switch (status){
+                case "com.facebook.lite":
+                    System.out.println("FB lite activo");
+                    break;
+                case "com.facebook.katana":
+                    System.out.println("FB activo");
+                    break;
+                case "com.instagram.android":
+                    System.out.println("Instagram activo");
+                    break;
+                case "com.snapchat.android":
+                    System.out.println("Snapchat activo");
+                    break;
+                case "com.skype.raider":
+                    System.out.println("Skype activo");
+                    break;
+                case "com.twitter.android":
+                    System.out.println("TW activo");
+                    break;
+                case "com.google.android.youtube":
+                    System.out.println("YB activo");
+                    break;
+                case "com.whatsapp":
+                    System.out.println("WP activo!!");
+                    break;
+            }
+        }
+    };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            unregisterReceiver(ReceivefromService);
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this,"Problemas soltando el broadcast receiver", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.intent.action.actualizarEstado");
+        registerReceiver(ReceivefromService, filter);
+    }
 }
+
+

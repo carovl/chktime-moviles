@@ -189,7 +189,9 @@ public class Modo_diagnostico extends Fragment {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Menu()).commit();
+                Intent intent = new Intent(getActivity(), Menu.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 
