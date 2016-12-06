@@ -18,6 +18,7 @@ public class Menu extends Fragment {
     private SharedPreferences.Editor editor;
 
     Button btn_back, btn_ayuda, btn_diagnostico, btn_intervencion;
+    boolean diagnostico, intervencion, choque;
 
     public Menu(){
 
@@ -65,6 +66,12 @@ public class Menu extends Fragment {
         btn_diagnostico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diagnostico=true;
+                intervencion=false;
+                choque = false;
+                editor.putBoolean("diagnostico",diagnostico);
+                editor.putBoolean("intervencion",intervencion);
+                editor.putBoolean("choque",choque);
                 Intent intent = new Intent(getActivity(), Diagnostico.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -77,7 +84,17 @@ public class Menu extends Fragment {
         btn_intervencion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_intervencion()).commit();
+                diagnostico=false;
+                intervencion=true;
+                choque = false;
+                editor.putBoolean("diagnostico",diagnostico);
+                editor.putBoolean("intervencion",intervencion);
+                editor.putBoolean("choque",choque);
+
+                Intent intent = new Intent(getActivity(), Intervencion2.class);
+                startActivity(intent);
+                getActivity().finish();
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_intervencion()).commit();
 
             }
         });

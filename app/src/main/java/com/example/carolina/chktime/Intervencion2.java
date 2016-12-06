@@ -1,13 +1,11 @@
 package com.example.carolina.chktime;
 
-import android.app.Activity;
+
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-public class Diagnostico extends AppCompatActivity {
+public class Intervencion2 extends AppCompatActivity {
 
     ImageView imgFB, imgIG, imgSC, imgSK, imgTW, imgYB, imgWP;
     Button btn_back, s1, s2, s3, s4, s5, s6, s7, btn_listo;
@@ -439,5 +437,18 @@ public class Diagnostico extends AppCompatActivity {
 
         Toast.makeText(mContext, "Has fallado en " + app, Toast.LENGTH_SHORT).show();
     }
+
+    public static void killProc(String app, int procID) {
+        System.out.println("kill proc ini");
+
+        ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        am.killBackgroundProcesses(app);
+        System.out.println(" act man kill proc fin");
+
+        android.os.Process.killProcess(procID);
+
+        System.out.println("kill proc fin");
+    }
+
 }
 
