@@ -412,21 +412,21 @@ public class Diagnostico extends AppCompatActivity {
     }
 
     //*************************************************************************************************
+    //Alarma
     public static void startAlert(String s, String app, int id) {
         int i = 5; //valor por defecto
         i = Integer.valueOf(s); //de aca se sacaria el valor para la alarma
         System.out.println("START ALERT");
         Intent intent = new Intent(mContext, MyBroadcastReceiver.class);
-        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "on");
+        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "on").putExtra("app",app);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, id, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (i * 1000), pendingIntent);
 
-        Toast.makeText(mContext, "Alarm set in " + i + " seconds for " + app, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "Monitoreo de " + i + " segundos para " + app, Toast.LENGTH_SHORT).show();
     }
 
-    //*************************************************************************************************
     public static void stopAlert(String app, int id) {
 
         System.out.println("STOP ALERT" + id);
@@ -437,7 +437,7 @@ public class Diagnostico extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
 
-        Toast.makeText(mContext, "Has fallado en " + app, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, ":( No has cumplido tu meta con " + app, Toast.LENGTH_SHORT).show();
     }
 
     //*************************************************************************************************
@@ -453,8 +453,6 @@ public class Diagnostico extends AppCompatActivity {
                 Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(2000);
                 return;
-            } else if (status.equals("off")) {
-                Toast.makeText(context, "No lo lograste intenta de nuevo :(", Toast.LENGTH_SHORT).show();
 
             } else if (status.equals("com.google.android.youtube")) {
                 Diagnostico.stopAlert("Youtube", 6);
