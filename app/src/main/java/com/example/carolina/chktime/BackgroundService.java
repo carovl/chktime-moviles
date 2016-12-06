@@ -32,7 +32,7 @@ public class BackgroundService extends Service {
 
         mainActivityIntent = new Intent(this, Diagnostico.class);
         mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        pmainActivityIntent = PendingIntent.getActivity(this,0,mainActivityIntent,0);
+        pmainActivityIntent = PendingIntent.getActivity(getApplicationContext(),0,mainActivityIntent,0);
 
 
         chaoIntent = new Intent(this, BackgroundService.class);
@@ -48,64 +48,76 @@ public class BackgroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if( intent.getAction().equals("app.caro.runningapps.BackgroundService.start") ) {
-            System.out.println("onStartCommand ");
+       //     System.out.println("onStartCommand ");
             Notification notification = new NotificationCompat.Builder(this)
                     .setContentTitle("chkTime")
                     .setTicker("chkTime")
                     .setContentText("chkTime")
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.logoblanco4)
                     .setOngoing(false)
                     .addAction(android.R.drawable.ic_menu_close_clear_cancel, "", pchaoIntent)
                     .setContentIntent(pmainActivityIntent)
                     .build();
             startForeground(9999, notification);
-            System.out.println("DESDEPUES DEL FOREGROUND");
+//            System.out.println("DESDEPUES DEL FOREGROUND");
           // System.out.println("ANTES DEL WHILE");
                ActivityManager manager =
                         (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 List<ActivityManager.RunningAppProcessInfo> processes = manager.getRunningAppProcesses();
                 for (ActivityManager.RunningAppProcessInfo process : processes)
                 {
-                    System.out.println("en el FOR");
+  //                  System.out.println("en el FOR");
                     if(process.processName.equals("com.google.android.youtube")) {
-                        int YBid = process.uid;
-                        System.out.println("YB ACTIVO EN EL SERVICIO " + YBid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.google.android.youtube").putExtra("procid",YBid);
+                        System.out.println("YB ACTIVO EN EL SERVICIO " );
+                        notification = new NotificationCompat.Builder(this)
+                                .setContentTitle("chkTime")
+                                .setTicker("chkTime")
+                                .setContentText("YB ACTIVO")
+                                .setSmallIcon(R.mipmap.logoblanco4)
+                                .setOngoing(false)
+                                .addAction(android.R.drawable.ic_menu_close_clear_cancel, "", pchaoIntent)
+                                .setContentIntent(pmainActivityIntent)
+                                .build();
+                        startForeground(9999, notification);
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.google.android.youtube");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.whatsapp")) {
-                        int WPid = process.uid;
-                        System.out.println("WP ACTIVO EN EL SERVICIO " + WPid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.whatsapp").putExtra("procid",WPid);
+                        System.out.println("WP ACTIVO EN EL SERVICIO " );
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.whatsapp");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.twitter.android")) {
-                        int TWid = process.uid;
-                        System.out.println("TW ACTIVO EN EL SERVICIO " + TWid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.twitter.android").putExtra("procid",TWid);
+                        System.out.println("TW ACTIVO EN EL SERVICIO ");
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.twitter.android");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.skype.raider")) {
-                        int SKid = process.uid;
-                        System.out.println("SK ACTIVO EN EL SERVICIO " + SKid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.skype.raider").putExtra("procid",SKid);
+                        System.out.println("SK ACTIVO EN EL SERVICIO " );
+                        notification = new NotificationCompat.Builder(this)
+                                .setContentTitle("chkTime")
+                                .setTicker("chkTime")
+                                .setContentText("skype ACTIVO")
+                                .setSmallIcon(R.mipmap.logoblanco4)
+                                .setOngoing(false)
+                                .addAction(android.R.drawable.ic_menu_close_clear_cancel, "", pchaoIntent)
+                                .setContentIntent(pmainActivityIntent)
+                                .build();
+                        startForeground(9999, notification);
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.skype.raider");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.snapchat.android")) {
-                        int SCid = process.uid;
-                        System.out.println("SC ACTIVO EN EL SERVICIO " + SCid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.snapchat.android").putExtra("procid",SCid);
+                        System.out.println("SC ACTIVO EN EL SERVICIO " );
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.snapchat.android");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.instagram.android")) {
-                        int IGid = process.uid;
                         System.out.println("IG ACTIVO EN EL SERVICIO");
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.instagram.android").putExtra("procid",IGid);
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.instagram.android");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.facebook.katana")) {
-                        int FBid = process.uid;
-                        System.out.println("FB ACTIVO EN EL SERVICIO " + FBid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.facebook.katana").putExtra("procid",FBid);
+                        System.out.println("FB ACTIVO EN EL SERVICIO " );
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.facebook.katana");
                         this.sendBroadcast(i);
                     }else if (process.processName.equals("com.facebook.lite")) {
-                        int FBid = process.uid;
-                        System.out.println("FB ACTIVO EN EL SERVICIO " + FBid);
-                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.facebook.lite").putExtra("procid",FBid);
+                        System.out.println("FB ACTIVO EN EL SERVICIO " );
+                        Intent i = new Intent("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "com.facebook.lite");
                         this.sendBroadcast(i);
                     }
                 }
@@ -126,6 +138,6 @@ public class BackgroundService extends Service {
             stopForeground(false);
             stopSelf();
         }
-        return START_REDELIVER_INTENT;
+        return START_STICKY;
     }
 }

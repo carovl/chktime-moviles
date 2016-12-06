@@ -11,13 +11,13 @@ import android.os.Vibrator;
 import android.widget.Toast;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
-    private SharedPreferences sp;
-    private SharedPreferences.Editor editor;
-    boolean diagnostico, intervencion, choque;
+   // private SharedPreferences sp;
+   // private SharedPreferences.Editor editor;
+   // boolean diagnostico, intervencion, choque;
 
     public MyBroadcastReceiver() {
-        diagnostico = sp.getBoolean("diagnostico", false);
-        intervencion = sp.getBoolean("intervencion", false);
+     //   diagnostico = sp.getBoolean("diagnostico", false);
+       // intervencion = sp.getBoolean("intervencion", false);
 
     }
 
@@ -34,70 +34,49 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             Toast.makeText(context, "No lo lograste intenta de nuevo :(", Toast.LENGTH_SHORT).show();
 
         } else if (status.equals("com.google.android.youtube")) {
+            Diagnostico.stopAlert("Youtube",6);
             //Toast.makeText(context, "youtube activo en el BROADCAST RECIVER", Toast.LENGTH_SHORT).show();
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("youtube activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico == true) {
-                Diagnostico.stopAlert("Youtube", 6);
-            } else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+            //int procID = intent.getIntExtra("procid", 0);
+            System.out.println("youtube activo en el BROADCAST RECIVER " );
+
         } else if (status.equals("com.whatsapp")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("whatsapp activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Whatsapp", 7);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+            Diagnostico.stopAlert("Whatsapp",7);
+            //int procID = intent.getIntExtra("procid", 0);
+            System.out.println("whatsapp activo en el BROADCAST RECIVER " );
+
         } else if (status.equals("com.twitter.android")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("twitter activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Twitter", 5);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+            //int procID = intent.getIntExtra("procid", 0);
+            Diagnostico.stopAlert("Twitter",5);
+            System.out.println("twitter activo en el BROADCAST RECIVER " );
+
+
         } else if (status.equals("com.skype.raider")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("skype activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Skype", 4);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+           // int procID = intent.getIntExtra("procid", 0);
+            System.out.println("skype activo en el BROADCAST RECIVER ");
+            Diagnostico.stopAlert("Skype",4);
+
         } else if (status.equals("com.snapchat.android")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("snapchat activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Snapchat", 3);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+            Diagnostico.stopAlert("Snapchat",3);
+            //int procID = intent.getIntExtra("procid", 0);
+            System.out.println("snapchat activo en el BROADCAST RECIVER " );
+
         } else if (status.equals("com.instagram.android")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("instagram activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Instagram", 2);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+           // int procID = intent.getIntExtra("procid", 0);
+            Diagnostico.stopAlert("Instagram",2);
+            System.out.println("instagram activo en el BROADCAST RECIVER " );
+
         } else if (status.equals("com.facebook.katana")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("fb activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Facebook", 1);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+           // int procID = intent.getIntExtra("procid", 0);
+            Diagnostico.stopAlert("Facebook",1);
+            System.out.println("fb activo en el BROADCAST RECIVER " );
+
         } else if (status.equals("com.facebook.lite")) {
-            int procID = intent.getIntExtra("procid", 0);
-            System.out.println("fb activo en el BROADCAST RECIVER " + procID);
-            if (diagnostico = true) {
-                Diagnostico.stopAlert("Facebook", 1);
-            }else if (intervencion== true){
-                Intervencion2.killProc(status, procID);
-            }
+            //int procID = intent.getIntExtra("procid", 0);
+            Diagnostico.stopAlert("Facebook",1);
+            System.out.println("fb activo en el BROADCAST RECIVER " );
+
         }
     }
+
+
 }

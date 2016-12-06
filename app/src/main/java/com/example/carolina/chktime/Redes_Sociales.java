@@ -97,13 +97,11 @@ public class Redes_Sociales extends Fragment {
         //Facebook
         cbFB = (CheckBox) rootView.findViewById(R.id.checkBox_FB);
         if (facebbokInstalled || facebbokliteInstalled) {
-            facebookliteRunning = this.isNamedProcessRunning("com.facebook.lite");
+         /*   facebookliteRunning = this.isNamedProcessRunning("com.facebook.lite");
             facebbokRunning = this.isNamedProcessRunning("com.facebook.katana");
             if(facebookliteRunning || facebbokRunning){
                 editor.putBoolean("Facebook_RUN", true).commit(); //le asigno a la opcion facebook el estado de instalado
-
-            }
-
+            }*/
             cbFB.setChecked(sp.getBoolean("Facebook", false)); //cargar aplicaciones
             cbFB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -120,11 +118,10 @@ public class Redes_Sociales extends Fragment {
         //Instagram
         cbIG = (CheckBox) rootView.findViewById(R.id.checkBox_IG);
         if (instagramInstalled) {
-            instagramRunning = this.isNamedProcessRunning("com.instagram.android");
+          /*  instagramRunning = this.isNamedProcessRunning("com.instagram.android");
             if(instagramRunning){
                 editor.putBoolean("Instagram_RUN", instagramRunning).commit();
-
-            }
+            }*/
             cbIG.setChecked(sp.getBoolean("Instagram", false)); //cargar aplicaciones
             cbIG.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -139,11 +136,10 @@ public class Redes_Sociales extends Fragment {
         //Snapchat
         cbSC = (CheckBox) rootView.findViewById(R.id.checkBox_SC);
         if (snapchatInstalled) {
-            snapchatRunning = this.isNamedProcessRunning("com.snapchat.android");
+         /*   snapchatRunning = this.isNamedProcessRunning("com.snapchat.android");
             if(snapchatRunning){
                 editor.putBoolean("Snapchat_RUN", snapchatRunning).commit();
-
-            }
+            }*/
             cbSC.setChecked(sp.getBoolean("Snapchat", false)); //cargar aplicaciones
             cbSC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -158,11 +154,10 @@ public class Redes_Sociales extends Fragment {
         //Skype
         cbSK = (CheckBox) rootView.findViewById(R.id.checkBox_SK);
         if (skypeInstalled) {
-            skypeRunning = this.isNamedProcessRunning("com.skype.raider");
+            /*skypeRunning = this.isNamedProcessRunning("com.skype.raider");
             if(skypeRunning){
                 editor.putBoolean("Skype_RUN", skypeRunning).commit();
-
-            }
+            }*/
             cbSK.setChecked(sp.getBoolean("Skype", false)); //cargar aplicaciones
             cbSK.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -177,10 +172,10 @@ public class Redes_Sociales extends Fragment {
         //Twitter
         cbTW = (CheckBox) rootView.findViewById(R.id.checkBox_TW);
         if (twitterInstalled) {
-            twitterRunning = this.isNamedProcessRunning("com.twitter.android");
+           /* twitterRunning = this.isNamedProcessRunning("com.twitter.android");
             if(twitterRunning){
                 editor.putBoolean("Twitter_RUN", twitterRunning).commit();
-            }
+            }*/
             cbTW.setChecked(sp.getBoolean("Twitter", false)); //cargar aplicaciones
             cbTW.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -195,11 +190,10 @@ public class Redes_Sociales extends Fragment {
         //Youtube
         cbYB = (CheckBox) rootView.findViewById(R.id.checkBox_YB);
         if (youtubeInstalled) {
-            youtubeRunning = this.isNamedProcessRunning("com.google.android.youtube");
+          /*  youtubeRunning = this.isNamedProcessRunning("com.google.android.youtube");
             if(youtubeRunning){
                 editor.putBoolean("Youtube_RUN", youtubeRunning).commit();
-
-            }
+            }*/
             cbYB.setChecked(sp.getBoolean("Youtube", false)); //cargar aplicaciones
             cbYB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -215,12 +209,11 @@ public class Redes_Sociales extends Fragment {
         //Whatsapp
         cbWP = (CheckBox) rootView.findViewById(R.id.checkBox_WP);
         if (whatsappInstalled) {
-            whatsappRunning = this.isNamedProcessRunning("com.whatsapp");
+           /* whatsappRunning = this.isNamedProcessRunning("com.whatsapp");
             if(whatsappRunning){
                 editor.putBoolean("Whatsapp_RUN", whatsappRunning).commit();
                 System.out.println("WP= true");
-
-            }
+            }*/
             cbWP.setChecked(sp.getBoolean("Whatsapp", false)); //cargar aplicaciones
             cbWP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -258,7 +251,7 @@ public class Redes_Sociales extends Fragment {
     //******************************************************************************************
     // esto funcionó en android 4.4 API 19 en la 21 no funciona
     //http://stackoverflow.com/questions/29330794/how-to-check-whether-a-particular-app-is-running-or-not-in-android
-    boolean isNamedProcessRunning(String processName){
+ /*   boolean isNamedProcessRunning(String processName){
         if (processName == null)
             return false;
 
@@ -273,9 +266,9 @@ public class Redes_Sociales extends Fragment {
                 return true;
             }
         }
-        System.out.println("false");
+       // System.out.println("false");
         return false;
-    }
+    }*/
 
 
 }

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.widget.Button;
@@ -29,7 +30,6 @@ public class Diagnostico extends AppCompatActivity {
     EditText ed1, ed2, ed3, ed4, ed5, ed6, ed7;
     LinearLayout l1, l2, l3, l4, l5, l6, l7;
     private static Context mContext;
-
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -399,13 +399,13 @@ public class Diagnostico extends AppCompatActivity {
         btn_listo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             /*   Intent intent = new Intent(getApplicationContext(), Diagnostico.class);
-                startActivity(intent);
-                finish();*/
-
                 Intent intent = new Intent(mContext, BackgroundService.class);
                 intent.setAction("app.caro.runningapps.BackgroundService.start");
                 startService(intent);
+
+                /*Intent i = new Intent(getApplicationContext(), Diagnostico.class);
+                startActivity(i);
+                finish();*/
 
             }
         });
@@ -429,7 +429,7 @@ public class Diagnostico extends AppCompatActivity {
     //*************************************************************************************************
     public static void stopAlert(String app, int id) {
 
-        System.out.println("STOP ALERT"+ id);
+        System.out.println("STOP ALERT" + id);
         Intent intent = new Intent(mContext, MyBroadcastReceiver.class);
         intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "off");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, id, intent, 0);
@@ -438,6 +438,85 @@ public class Diagnostico extends AppCompatActivity {
         alarmManager.cancel(pendingIntent);
 
         Toast.makeText(mContext, "Has fallado en " + app, Toast.LENGTH_SHORT).show();
+    }
+
+    //*************************************************************************************************
+    private BroadcastReceiver MyBroadcastReceiver1 = new BroadcastReceiver() {
+
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("on Receive");
+            String status = intent.getStringExtra("alarma");
+            if (status.equals("on")) {
+                Toast.makeText(context, "Felicidades :)", Toast.LENGTH_SHORT).show();
+                Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(2000);
+                return;
+            } else if (status.equals("off")) {
+                Toast.makeText(context, "No lo lograste intenta de nuevo :(", Toast.LENGTH_SHORT).show();
+
+            } else if (status.equals("com.google.android.youtube")) {
+                Diagnostico.stopAlert("Youtube", 6);
+                //Toast.makeText(context, "youtube activo en el BROADCAST RECIVER", Toast.LENGTH_SHORT).show();
+                //int procID = intent.getIntExtra("procid", 0);
+                System.out.println("youtube activo en el BROADCAST RECIVER ");
+
+            } else if (status.equals("com.whatsapp")) {
+                Diagnostico.stopAlert("Whatsapp", 7);
+                //int procID = intent.getIntExtra("procid", 0);
+                System.out.println("whatsapp activo en el BROADCAST RECIVER ");
+
+            } else if (status.equals("com.twitter.android")) {
+                //int procID = intent.getIntExtra("procid", 0);
+                Diagnostico.stopAlert("Twitter", 5);
+                System.out.println("twitter activo en el BROADCAST RECIVER ");
+
+
+            } else if (status.equals("com.skype.raider")) {
+                // int procID = intent.getIntExtra("procid", 0);
+                System.out.println("skype activo en el BROADCAST RECIVER ");
+                Diagnostico.stopAlert("Skype", 4);
+
+            } else if (status.equals("com.snapchat.android")) {
+                Diagnostico.stopAlert("Snapchat", 3);
+                //int procID = intent.getIntExtra("procid", 0);
+                System.out.println("snapchat activo en el BROADCAST RECIVER ");
+
+            } else if (status.equals("com.instagram.android")) {
+                // int procID = intent.getIntExtra("procid", 0);
+                Diagnostico.stopAlert("Instagram", 2);
+                System.out.println("instagram activo en el BROADCAST RECIVER ");
+
+            } else if (status.equals("com.facebook.katana")) {
+                // int procID = intent.getIntExtra("procid", 0);
+                Diagnostico.stopAlert("Facebook", 1);
+                System.out.println("fb activo en el BROADCAST RECIVER ");
+
+            } else if (status.equals("com.facebook.lite")) {
+                //int procID = intent.getIntExtra("procid", 0);
+                Diagnostico.stopAlert("Facebook", 1);
+                System.out.println("fb activo en el BROADCAST RECIVER ");
+            }
+        }
+    };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            unregisterReceiver(MyBroadcastReceiver1);
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Problemas soltando el broadcast receiver", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.example.carolina.chktime.broadcat_reciever.custom");
+        registerReceiver(MyBroadcastReceiver1, filter);
     }
 }
 
