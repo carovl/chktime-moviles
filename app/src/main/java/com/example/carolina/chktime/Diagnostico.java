@@ -1,7 +1,5 @@
 package com.example.carolina.chktime;
 
-import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -9,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +18,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 
 public class Diagnostico extends AppCompatActivity {
 
@@ -26,10 +30,15 @@ public class Diagnostico extends AppCompatActivity {
     Button btn_back, s1, s2, s3, s4, s5, s6, s7, btn_listo;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
-    boolean cbFB, cbIG, cbSC, cbSK, cbTW, cbYB, cbWP, RunFB, RunIG, RunSC, RunSK, RunTW, RunYB, RunWP;
+    boolean cbFB, cbIG, cbSC, cbSK, cbTW, cbYB, cbWP, activacion;
     EditText ed1, ed2, ed3, ed4, ed5, ed6, ed7;
     LinearLayout l1, l2, l3, l4, l5, l6, l7;
     private static Context mContext;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,9 @@ public class Diagnostico extends AppCompatActivity {
         mContext = this.getApplicationContext();
         sp = getSharedPreferences("Opciones_Guardadas", Context.MODE_PRIVATE); // para tener una pref para toda la app
         editor = sp.edit();
+
+        btn_listo = (Button) findViewById(R.id.listo);
+        btn_listo.setVisibility(View.GONE);
 
         //******************************************************************************************
         //Identificacion de las apps seleccionadas
@@ -48,17 +60,6 @@ public class Diagnostico extends AppCompatActivity {
         cbTW = sp.getBoolean("Twitter", false);
         cbYB = sp.getBoolean("Youtube", false);
         cbWP = sp.getBoolean("Whatsapp", false);
-
-       /* RunFB = sp.getBoolean("Facebook_RUN", false);
-        // System.out.println("FB=" + RunFB);
-        RunIG = sp.getBoolean("Instagram_RUN", false);
-        // System.out.println("IG=" + RunIG);
-        RunSC = sp.getBoolean("Snapchat_RUN", false);
-        RunSK = sp.getBoolean("Skype_RUN", false);
-        RunTW = sp.getBoolean("Twitter_RUN", false);
-        RunYB = sp.getBoolean("Youtube_RUN", false);
-        RunWP = sp.getBoolean("Whatsapp_RUN", false);
-        // System.out.println("WP=" + RunWP);*/
 
         int width = 80;
         int heigt = 80;
@@ -91,6 +92,10 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed1.getText().toString();
                                     startAlert(string_temp, "Facebook", 1);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    activacion = true;
+                                    editor.putBoolean("activacion", activacion).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -105,6 +110,7 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Facebook", 1);
+                    editor.putBoolean("activacion", false).commit();
                 }
             });
         }
@@ -137,6 +143,10 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed2.getText().toString();
                                     startAlert(string_temp, "Instagram", 2);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    activacion = true;
+                                    editor.putBoolean("activacion", activacion).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -151,6 +161,7 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Instagram", 2);
+                    editor.putBoolean("activacion", false).commit();
                 }
             });
         }
@@ -181,6 +192,10 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed3.getText().toString();
                                     startAlert(string_temp, "Snapchat", 3);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    activacion = true;
+                                    editor.putBoolean("activacion", activacion).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -195,6 +210,7 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Snapchat", 3);
+                    editor.putBoolean("activacion", false).commit();
                 }
             });
         }
@@ -225,6 +241,9 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed4.getText().toString();
                                     startAlert(string_temp, "Skype", 4);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    editor.putBoolean("activacion", true).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -239,6 +258,8 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Skype", 4);
+                    editor.putBoolean("activacion", false).commit();
+                    System.out.println(sp.getBoolean("activacion", false));
                 }
             });
         }
@@ -269,6 +290,10 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed5.getText().toString();
                                     startAlert(string_temp, "Twitter", 5);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    activacion = true;
+                                    editor.putBoolean("activacion", activacion).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -283,6 +308,7 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Twitter", 5);
+                    editor.putBoolean("activacion", false).commit();
                 }
             });
         }
@@ -313,6 +339,9 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed6.getText().toString();
                                     startAlert(string_temp, "Youtube", 6);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    editor.putBoolean("activacion", true).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -327,6 +356,8 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Youtube", 6);
+                    editor.putBoolean("activacion", false).commit();
+                    System.out.println(sp.getBoolean("activacion", false));
                 }
             });
         }
@@ -357,6 +388,9 @@ public class Diagnostico extends AppCompatActivity {
                                 } else {
                                     String string_temp = ed7.getText().toString();
                                     startAlert(string_temp, "Whatsapp", 7);
+                                    btn_listo.setVisibility(View.VISIBLE);
+                                    editor.putBoolean("activacion", true).commit();
+                                    System.out.println(sp.getBoolean("activacion", false));
                                 }
                                 return true;
                             default:
@@ -371,6 +405,8 @@ public class Diagnostico extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     stopAlert("Whatsapp", 7);
+                    editor.putBoolean("activacion", false).commit();
+                    System.out.println(sp.getBoolean("activacion", false));
                 }
             });
 
@@ -382,23 +418,24 @@ public class Diagnostico extends AppCompatActivity {
 
         //******************************************************************************************
         //Boton de atras
-       /* btn_back = (Button) findViewById(R.id.atras);
+        btn_back = (Button) findViewById(R.id.atras);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Diagnostico.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 //finish();
                 //onStop();
                 //getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Menu()).commit();
             }
-        });*/
+        });
 
-        btn_listo = (Button) findViewById(R.id.listo);
+
         btn_listo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(mContext, BackgroundService.class);
                 intent.setAction("app.caro.runningapps.BackgroundService.start");
                 startService(intent);
@@ -409,6 +446,9 @@ public class Diagnostico extends AppCompatActivity {
 
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+       // client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     //*************************************************************************************************
@@ -418,92 +458,119 @@ public class Diagnostico extends AppCompatActivity {
         i = Integer.valueOf(s); //de aca se sacaria el valor para la alarma
         System.out.println("START ALERT");
         Intent intent = new Intent(mContext, MyBroadcastReceiver.class);
-        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "on").putExtra("app",app);
+        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "on").putExtra("app", app);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, id, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (i * 1000), pendingIntent);
 
         Toast.makeText(mContext, "Monitoreo de " + i + " segundos para " + app, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "Para activar el monitoreo presiona Listo", Toast.LENGTH_SHORT).show();
     }
 
     public static void stopAlert(String app, int id) {
 
-        System.out.println("STOP ALERT" + id);
+        System.out.println("STOP ALERT " + id);
         Intent intent = new Intent(mContext, MyBroadcastReceiver.class);
-        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "off");
+        intent.setAction("com.example.carolina.chktime.broadcat_reciever.custom").putExtra("alarma", "off").putExtra("app", app);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, id, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
 
-        Toast.makeText(mContext, ":( No has cumplido tu meta con " + app, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, ":( No has cumplido tu meta con " + app + " Intenta de nuevo", Toast.LENGTH_SHORT).show();
     }
 
-    //*************************************************************************************************
-    private BroadcastReceiver MyBroadcastReceiver1 = new BroadcastReceiver() {
-
+    //**********************************************************************************************
+  /*  private BroadcastReceiver MyBroadcastReceiver = new BroadcastReceiver() {
+        boolean alarma;
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            sp = context.getSharedPreferences("Opciones_Guardadas", Context.MODE_PRIVATE); // para tener una pref para toda la app
+            editor = sp.edit();
+            //  diagnostico= sp.getBoolean("diagnostico",false);
+            //intervencion= sp.getBoolean("intervencion",false);
+
             System.out.println("on Receive");
             String status = intent.getStringExtra("alarma");
-            if (status.equals("on")) {
-                Toast.makeText(context, "Felicidades :)", Toast.LENGTH_SHORT).show();
-                Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(2000);
-                return;
+            switch (status) {
+                case "on":
+                    String name = intent.getStringExtra("app");
+                    Toast.makeText(context, "Felicidades :) has cumplido tu meta con " + name, Toast.LENGTH_SHORT).show();
+                    Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(2000);
+                    return;
+                case "servicio":
+                    Intent i = new Intent(context, BackgroundService.class);
+                    i.setAction("app.caro.runningapps.BackgroundService.start");
+                    context.startService(i);
+                    break;
+                case "com.google.android.youtube":
+                    System.out.println("yb alarma " + sp.getBoolean("alarma", false));
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Youtube", 6);
+                    }
+                    System.out.println("youtube activo en el BROADCAST RECIVER ");
+                    break;
+                case "com.whatsapp":
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Whatsapp", 7);
+                    }
+                    System.out.println("whatsapp activo en el BROADCAST RECIVER ");
+                    break;
+                case "com.twitter.android":
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Twitter", 5);
+                    }
+                    System.out.println("twitter activo en el BROADCAST RECIVER ");
+                    break;
+                case "com.skype.raider":
+                    System.out.println("skype activo en el BROADCAST RECIVER ");
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Skype", 4);
+                    }
+                    break;
+                case "com.snapchat.android":
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Snapchat", 3);
+                    }
+                    System.out.println("snapchat activo en el BROADCAST RECIVER ");
+                    break;
+                case "com.instagram.android":
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Instagram", 2);
+                    }
+                    System.out.println("instagram activo en el BROADCAST RECIVER ");
+                    break;
+                case "com.facebook.katana":
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Facebook", 1);
+                    }
+                    System.out.println("fb activo en el BROADCAST RECIVER ");
+                    break;
+                case "com.facebook.lite":
+                    if (alarma = sp.getBoolean("activacion", false)) {
+                        Diagnostico.stopAlert("Facebook", 1);
+                    }
+                    System.out.println("fb activo en el BROADCAST RECIVER ");
+                    break;
+                default:
+                    i = new Intent(context, BackgroundService.class);
+                    i.setAction("app.caro.runningapps.BackgroundService.start");
+                    context.startService(i);
+                    break;
 
-            } else if (status.equals("com.google.android.youtube")) {
-                Diagnostico.stopAlert("Youtube", 6);
-                //Toast.makeText(context, "youtube activo en el BROADCAST RECIVER", Toast.LENGTH_SHORT).show();
-                //int procID = intent.getIntExtra("procid", 0);
-                System.out.println("youtube activo en el BROADCAST RECIVER ");
-
-            } else if (status.equals("com.whatsapp")) {
-                Diagnostico.stopAlert("Whatsapp", 7);
-                //int procID = intent.getIntExtra("procid", 0);
-                System.out.println("whatsapp activo en el BROADCAST RECIVER ");
-
-            } else if (status.equals("com.twitter.android")) {
-                //int procID = intent.getIntExtra("procid", 0);
-                Diagnostico.stopAlert("Twitter", 5);
-                System.out.println("twitter activo en el BROADCAST RECIVER ");
-
-
-            } else if (status.equals("com.skype.raider")) {
-                // int procID = intent.getIntExtra("procid", 0);
-                System.out.println("skype activo en el BROADCAST RECIVER ");
-                Diagnostico.stopAlert("Skype", 4);
-
-            } else if (status.equals("com.snapchat.android")) {
-                Diagnostico.stopAlert("Snapchat", 3);
-                //int procID = intent.getIntExtra("procid", 0);
-                System.out.println("snapchat activo en el BROADCAST RECIVER ");
-
-            } else if (status.equals("com.instagram.android")) {
-                // int procID = intent.getIntExtra("procid", 0);
-                Diagnostico.stopAlert("Instagram", 2);
-                System.out.println("instagram activo en el BROADCAST RECIVER ");
-
-            } else if (status.equals("com.facebook.katana")) {
-                // int procID = intent.getIntExtra("procid", 0);
-                Diagnostico.stopAlert("Facebook", 1);
-                System.out.println("fb activo en el BROADCAST RECIVER ");
-
-            } else if (status.equals("com.facebook.lite")) {
-                //int procID = intent.getIntExtra("procid", 0);
-                Diagnostico.stopAlert("Facebook", 1);
-                System.out.println("fb activo en el BROADCAST RECIVER ");
             }
         }
     };
 
+
     @Override
     protected void onPause() {
-        super.onPause();
+        super.onPuse();
         try {
-            unregisterReceiver(MyBroadcastReceiver1);
+            unregisterReceiver(MyBroadcastReceiver);
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, "Problemas soltando el broadcast receiver", Toast.LENGTH_SHORT).show();
         }
@@ -514,7 +581,7 @@ public class Diagnostico extends AppCompatActivity {
         super.onResume();
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.example.carolina.chktime.broadcat_reciever.custom");
-        registerReceiver(MyBroadcastReceiver1, filter);
-    }
+        registerReceiver(MyBroadcastReceiver, filter);
+    }*/
 }
 

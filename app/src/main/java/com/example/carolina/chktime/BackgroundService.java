@@ -7,17 +7,25 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class BackgroundService extends Service {
 
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
+    boolean alarma;
 
     Intent mainActivityIntent;
     PendingIntent pmainActivityIntent;
@@ -198,17 +206,18 @@ public class BackgroundService extends Service {
             AlarmManager alarmManager = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (10 * 1000), pendingIntent);
 
-
-
-            // Toast.makeText(this.getApplicationContext(), "hola 2", Toast.LENGTH_SHORT).show();
-            //System.out.println("hola prueba 2");
-
         }else if( intent.getAction().equals("app.caro.runningapps.BackgroundService.chao") ){
             stopForeground(false);
             stopSelf();
             ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
             am.killBackgroundProcesses("com.example.carolina.chktime");
-        }
+
+        }/*else if( intent.getAction().equals("app.caro.runningapps.BackgroundService.Intervencion2") ) {
+            stopForeground(false);
+            stopSelf();
+            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            am.killBackgroundProcesses("com.example.carolina.chktime");
+        }*/
         return START_STICKY;
     }
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class Menu extends Fragment {
@@ -17,8 +18,8 @@ public class Menu extends Fragment {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
-    Button btn_back, btn_ayuda, btn_diagnostico, btn_intervencion;
-    boolean diagnostico, intervencion, choque;
+    Button btn_back, btn_ayuda, btn_diagnostico, btn_intervencion, btn_choque;
+    boolean diagnostico, intervencion;
 
     public Menu(){
 
@@ -68,14 +69,11 @@ public class Menu extends Fragment {
             public void onClick(View view) {
                 diagnostico=true;
                 intervencion=false;
-                choque = false;
-                editor.putBoolean("diagnostico",diagnostico);
-                editor.putBoolean("intervencion",intervencion);
-                editor.putBoolean("choque",choque);
+                editor.putBoolean("diagnostico",diagnostico).commit();
+                editor.putBoolean("intervencion",intervencion).commit();
                 Intent intent = new Intent(getActivity(), Diagnostico.class);
                 startActivity(intent);
                 getActivity().finish();
-               // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_diagnostico()).commit();
 
             }
         });
@@ -86,18 +84,23 @@ public class Menu extends Fragment {
             public void onClick(View view) {
                 diagnostico=false;
                 intervencion=true;
-                choque = false;
-                editor.putBoolean("diagnostico",diagnostico);
-                editor.putBoolean("intervencion",intervencion);
-                editor.putBoolean("choque",choque);
+                editor.putBoolean("diagnostico",diagnostico).commit();
+                editor.putBoolean("intervencion",intervencion).commit();
 
-                Intent intent = new Intent(getActivity(), Intervencion2.class);
+                Intent intent = new Intent(getActivity(), DESCONECTATE.class);
                 startActivity(intent);
                 getActivity().finish();
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_fragmentos, new Modo_intervencion()).commit();
 
             }
         });
+        btn_choque = (Button) rootView.findViewById(R.id.modo_choque);
+        btn_choque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Espera este modo en la proxima version!! de chkTime ;)",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
         return rootView;

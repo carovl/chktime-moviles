@@ -66,17 +66,19 @@ public class Textshow extends Fragment {
         switch(shower){
             case 1:
                 titulo.setText("INSTRUCCIONES");
-                descripcion.setText("Escoge un metodo, selecciona la red social, programa el tiempo, desconectate");
+                descripcion.setText("- Escoge un metodo, selecciona las redes sociales, programa el tiempo de monitoreo y desconectate.\n- En el MODO DIAGNOSTICO debes eligir al menos una aplicacion para monitorear.\n" +
+                        "- En el MODO INTERVENCION simplemente DESCONECTATE");
 
                 break;
             case 2:
                 titulo.setText("ACERCA DE");
-                descripcion.setText("Es un proyecto universitario para la materia programacion de dispositivos moviles");
+                descripcion.setText("- Es un proyecto universitario para la materia programacion de dispositivos moviles. \n- La idea es ayudar a las personas a ser concientes del tiempo que pasan en las redes sociales\n" +
+                        "- Este proyecto fué desarrollado por: \n   Andres Cuartas Perez. \n   Carolina Vélez León.");
                 editor.putInt("intVariableName",0).commit();
                 break;
             case 3:
                 titulo.setText("AYUDA");
-                descripcion.setText("Simplemente escoge tu red social y programa el tiempo");
+                descripcion.setText("- Simplemente escoge tu red social y programa el tiempo.\n- Para activar el monitoreo debes presionar Listo \n- Esta app esta diseñada para celulares y tabletas con versiones Android anteriores o iguales a Android 4.4 (KitKat). \n- Su correcto funcionamiento esta limitado a la capacidad del procesador del dispositivo." );
                 editor.putInt("intVariableName",0).commit();
                 break;
             default:
